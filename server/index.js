@@ -6,7 +6,6 @@ var cors = require('cors');
 var methodOverride = require('method-override');
 var api = require('./routes/api.route');
 var bodyParser = require('body-parser');
-const Sequelize = require('sequelize');
 var shortid = require('shortid');
 
 app.use(logger('dev'));
@@ -16,13 +15,31 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 app.use(cors());
 app.use('/api', api);
 
-const sequelize = new Sequelize('chat-app', 'root', 'example', {
-    dialect: 'mysql',
-    host: "127.0.0.1",
-    port: 3306,
-});
+const user = require('./models/user');
 
+const user_chatRoom = require('./models/user-chat');
 
+const chatRoom = require('./models/chatroom');
+
+const message = require('./models/message');
+
+user.sync();
+user_chatRoom.sync();
+message.sync();
+
+//create a broadcast room if there is no room in chatRoom
+chatRoom.sync()
+    .then(() => chatRoom.findOne().then(value => {
+        if (value) {
+            console.log("roomID: " + value.chatRoomID)
+        }
+        else {
+            chatRoom.create({
+                chatRoomID: shortid.generate()
+            })
+        }
+    }))
+//socket io to detect message sent from frontend and send back to frontend
 io.on('connection', function (socket) {
 
     socket.on('disconnect', function () {
