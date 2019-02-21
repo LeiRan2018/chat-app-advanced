@@ -39,16 +39,30 @@ chatRoom.sync()
             })
         }
     }))
-//socket io to detect message sent from frontend and send back to frontend
+// socket io to detect message sent from frontend and send back to frontend
 io.on('connection', function (socket) {
 
     socket.on('disconnect', function () {
         console.log('disconnected');
     });
 
-    socket.on('message', (msg) => {
-        console.log('message: ' + msg['meg'] + " userid: " + msg['userid']);
-        io.emit('message', msg);
+    socket.on('add-message', (data) => {
+        console.log(Object.keys(socket.rooms))
+        console.log(data)
+        //send message to user in this room
+        io.to(data.room).emit('message', data.mess);
+    });
+    //determine user room id 
+    socket.on('room', (data) => {
+        let rooms = Object.keys(socket.rooms);
+        if (rooms.length ===2 && rooms[1] != data) {
+            console.log(rooms[0] + ' change room to ' + data);
+            socket.leave(rooms[1]);
+            socket.join(data);
+        } else {
+            console.log(rooms[0] + ' join room in ' + data);
+            socket.join(data)
+        };
     })
 });
 

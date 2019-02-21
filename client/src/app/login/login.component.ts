@@ -10,30 +10,28 @@ import { Login } from '../models/login.model';
 
 export class LoginComponent implements OnInit {
 
-  userid: string;
-  model: Login;
-  mess: string;
-  returnUrl: string;
-  logged: boolean = false;
-  error: Object;
+  model = new Login('');
+  error: string;
   constructor(
     private chat: ChatService,
     private router: Router,
-
   ) {
-
   }
 
   ngOnInit() {
-    this.returnUrl = '/';
+    //remove localstorage once routing to login page
     this.chat.logout();
-    this.model = new Login('');
   }
-
-  senduser() {
-    this.chat.postusername(this.model).subscribe( 
-      ()=> {this.router.navigate(['/']);},
-      error => this.error = error );
+  //send user name to backend with chat service, success routing to root else show error message
+  loginuser() {
+    this.chat.loginuser(this.model).subscribe(
+      (res) => { 
+        //join to broadcast room
+        this.chat.joinroom(res['chatid']);
+        this.router.navigate(['/']);
+        console.log(res);
+       },
+      () => { this.error = 'user not existed, please sign up' });
   }
 
 }

@@ -1,5 +1,5 @@
 <h1>Sign up</h1>
-<p>{{mess}}</p>
+<p>{{mess | json}}</p>
 <form #loginForm="ngForm">
   <div class="form-group">
     <label for="name">User name</label>
@@ -15,6 +15,6 @@
   </div>
 
 
-  <button type="submit" class="btn btn-success" (click)="senduser()">Submit</button>
+  <button type="submit" class="btn btn-success" (click)="signuser()">Submit</button>
 
 </form>

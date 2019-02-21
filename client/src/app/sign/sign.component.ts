@@ -8,31 +8,22 @@ import { Router } from '@angular/router';
   styleUrls: ['./sign.component.css']
 })
 export class SignComponent implements OnInit {
-  model: Sign;
-  mess: string;
-  returnUrl: string;
+  model = new Sign('', '');
+  returnUrl = '/login';
   constructor(
     private chat: ChatService,
     private router: Router,
   ) {
   }
 
-
-  get diagnostic() { return JSON.stringify(this.model); }
-
   ngOnInit() {
-    this.model = new Sign('', '');
-    this.returnUrl = '/login';
   }
-
-  senduserid(meg: string) {
-    this.chat.sendMsg(meg);
-  }
-
-  senduser() {
-    this.chat.postuser(this.model)
-      .subscribe(msg => { this.mess = msg });
-    this.router.navigate([this.returnUrl]);
+  //sign up user with chat service
+  signuser() {
+    this.chat.signuser(this.model)
+      .subscribe(() => {
+        this.router.navigate([this.returnUrl]);
+      });
   }
 
 }

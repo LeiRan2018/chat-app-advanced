@@ -15,7 +15,6 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +23,6 @@ import { ChatComponent } from './chat/chat.component';
     HeaderComponent,
     SignComponent,
     HomeComponent,
-    ChatComponent,
   ],
   imports: [
     BrowserModule,
