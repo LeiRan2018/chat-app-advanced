@@ -3,6 +3,7 @@ import { ChatService } from '../chat.service';
 import { Chats } from '../models/chats.model';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
+import { observable } from 'rxjs';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -16,10 +17,12 @@ export class HomeComponent implements OnInit {
     chat: new FormControl('', Validators.required),
   });
   roomID: string;
-  broadcast: boolean = true;
+  broadcast: boolean = false;
+  login:boolean = true;
   contact: Object;
   oneonetag: string;
   messages: Array<any>;
+  message: Array<any>;
   constructor(
 
     private chat: ChatService,
@@ -36,6 +39,7 @@ export class HomeComponent implements OnInit {
   }
 
   oneone(user: Object) {
+    this.broadcastupdate();
     this.chat.one(user['userName'] + ',' + this.currentUser.username).subscribe(value => {
       this.one = JSON.parse(localStorage.getItem(value.roomID));
       this.roomID = value.roomID;
@@ -45,19 +49,30 @@ export class HomeComponent implements OnInit {
     this.broadcast = false;
     this.oneonetag = user['userName'] + ',' + this.currentUser.username;
     this.messages = new Array<any>();
+    this.login = false;
+   
+    
   }
   broadcasted() {
     this.broadcast = true;
+    this.login = false;
     this.one = null;
     this.roomID = JSON.parse(localStorage.getItem('currentUser')).chatid;
     this.chat.joinroom(this.roomID);
     this.oneonetag = '';
     this.messages = new Array<any>();
   }
+  broadcastupdate() {
+    let historymess = [];
+    this.currentUser.message.forEach(el =>{
+      historymess.push(el.message);
+    });
+    this.message = historymess.concat(this.messages);
 
+  }
   send(mess: string) {
-    this.chat.sendMessage({ room: this.roomID, mess: mess });
-    this.chat.postchat({ msg: mess + ' from ' + this.currentUser.username, chatid: this.roomID }).subscribe();
+    this.chat.sendMessage({ room: this.roomID, mess: mess + ',' + this.currentUser.username});
+    this.chat.postchat({ msg: mess + ',' + this.currentUser.username, chatid: this.roomID }).subscribe();
     if (this.chatForm.valid) {
       this.chatForm.reset();
     }
@@ -67,6 +82,7 @@ export class HomeComponent implements OnInit {
     this.chat.getMessages().subscribe(msg => {
       console.log(msg)
       this.messages.push(msg);
+      console.log(this.messages);
     })
   }
 

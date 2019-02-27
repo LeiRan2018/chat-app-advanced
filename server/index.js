@@ -55,6 +55,7 @@ io.on('connection', function (socket) {
     //determine user room id 
     socket.on('room', (data) => {
         let rooms = Object.keys(socket.rooms);
+        console.log(socket.rooms);
         if (rooms.length ===2 && rooms[1] != data) {
             console.log(rooms[0] + ' change room to ' + data);
             socket.leave(rooms[1]);

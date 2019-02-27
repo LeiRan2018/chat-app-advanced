@@ -41,6 +41,7 @@ export class ChatService {
       })
     );
   }
+  
   //switch to one-one chat mode with these two user name as parameter
   one(name: string) {
     return this.http.post(`${this.url}/api/one`, { data: name }).pipe(
