@@ -19,8 +19,10 @@ export class HomeComponent implements OnInit {
   roomID: string;
   broadcast: boolean = false;
   login:boolean = true;
+  broadcastbutton: boolean = true;
   contact: Object;
   oneonetag: string;
+  selectinfo: Object;
   messages: Array<any>;
   message: Array<any>;
   constructor(
@@ -39,6 +41,7 @@ export class HomeComponent implements OnInit {
   }
 
   oneone(user: Object) {
+    this.selectinfo = user;
     this.broadcastupdate();
     this.chat.one(user['userName'] + ',' + this.currentUser.username).subscribe(value => {
       this.one = JSON.parse(localStorage.getItem(value.roomID));
@@ -50,12 +53,15 @@ export class HomeComponent implements OnInit {
     this.oneonetag = user['userName'] + ',' + this.currentUser.username;
     this.messages = new Array<any>();
     this.login = false;
+    this.broadcastbutton = false;
    
     
   }
   broadcasted() {
+    this.selectinfo = null;
     this.broadcast = true;
     this.login = false;
+    this.broadcastbutton = true;
     this.one = null;
     this.roomID = JSON.parse(localStorage.getItem('currentUser')).chatid;
     this.chat.joinroom(this.roomID);
