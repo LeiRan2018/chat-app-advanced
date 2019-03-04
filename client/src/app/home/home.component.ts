@@ -65,14 +65,14 @@ export class HomeComponent implements OnInit {
   broadcastupdate() {
     let historymess = [];
     this.currentUser.message.forEach(el =>{
-      historymess.push(el.message);
+      historymess.push({message:el.message, username: el.username});
     });
     this.message = historymess.concat(this.messages);
 
   }
   send(mess: string) {
-    this.chat.sendMessage({ room: this.roomID, mess: mess + ',' + this.currentUser.username});
-    this.chat.postchat({ msg: mess + ',' + this.currentUser.username, chatid: this.roomID }).subscribe();
+    this.chat.sendMessage({ room: this.roomID, mess: mess, user: this.currentUser.username});
+    this.chat.postchat({ msg: mess, username: this.currentUser.username, chatid: this.roomID }).subscribe();
     if (this.chatForm.valid) {
       this.chatForm.reset();
     }

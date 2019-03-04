@@ -7,7 +7,8 @@ exports.postchat = async function (data) {
         message.create({
             messageID: shortid.generate(),
             chatRoomID: data.chatid,
-            message: data.msg
+            message: data.msg,
+            username: data.username
         })
 
     } catch (e) {

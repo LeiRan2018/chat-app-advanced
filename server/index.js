@@ -50,7 +50,7 @@ io.on('connection', function (socket) {
         console.log(Object.keys(socket.rooms))
         console.log(data)
         //send message to user in this room
-        io.to(data.room).emit('message', data.mess);
+        io.to(data.room).emit('message', data);
     });
     //determine user room id 
     socket.on('room', (data) => {

@@ -21,8 +21,8 @@
                 <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-success"
                         *ngFor='let mess of message'>
-                        {{mess.split(',')[0]}}
-                        <span class="badge badge-info badge-pill ">{{mess.split(',')[1]}}</span>
+                        {{mess.message}}
+                        <span class="badge badge-info badge-pill ">{{mess.username}}</span>
                     </li>
                 </ul>
             </div>
@@ -31,8 +31,8 @@
                 <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-success"
                         *ngFor='let info of currentUser.message'>
-                        {{info.message.split(',')[0]}}
-                        <span class="badge badge-info badge-pill "> {{info.message.split(',')[1]}}</span>
+                        {{info.message}}
+                        <span class="badge badge-info badge-pill "> {{info.username}}</span>
                     </li>
                 </ul>
             </div>
@@ -41,8 +41,8 @@
                 <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-success"
                         *ngFor='let info of one.message'>
-                        {{info.message.split(',')[0]}}
-                        <span class="badge badge-info badge-pill "> {{info.message.split(',')[1]}}</span>
+                        {{info.message}}
+                        <span class="badge badge-info badge-pill "> {{info.username}}</span>
                     </li>
                 </ul>
             </div>
@@ -50,8 +50,8 @@
                 <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-success"
                         *ngFor='let mess of messages'>
-                        {{mess.split(',')[0]}}
-                        <span class="badge badge-info badge-pill ">{{mess.split(',')[1]}}</span>
+                        {{mess.mess}}
+                        <span class="badge badge-info badge-pill ">{{mess.user}}</span>
                     </li>
                 </ul>
             </div>
