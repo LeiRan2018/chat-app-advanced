@@ -2,14 +2,14 @@
   <form class="form-signin">
     <img class="mb-4" src="https://www.shareicon.net/data/512x512/2016/07/09/119148_chat_512x512.png" alt="" width="72"
       height="72">
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <h1 class="h3 mb-3 font-weight-normal">Please Log in</h1>
     <label for="inputEmail" class="sr-only">Email address</label>
-    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" [(ngModel)]="user.email" name="email" required autofocus>
     <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+    <input type="password" id="inputPassword" class="form-control" placeholder="Password" [(ngModel)]="user.password" name="password" required>
     
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-    <button class="btn btn-lg btn-info btn-block" routerLink = "/signup">Sign up</button>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="loginuser()">Log in</button>
+    <button class="btn btn-lg btn-info btn-block" (click)= "signuser()">Sign up</button>
     <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
   </form>
 </body>

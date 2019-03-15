@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { Sign } from './models/sign.model';
 import * as io from 'socket.io-client';
 import { Observable } from 'rxjs';
+import { Login } from './models/login.model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class ChatService {
   }
 
   //sign up user and send to backend
-  signuser(user: Sign) {
+  signuser(user: Login) {
     return this.http.post(`${this.url}/api/sign`, { 'data': user }).pipe(
       map(res => { return res['data'] })
     );

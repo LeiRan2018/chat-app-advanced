@@ -10,12 +10,13 @@ import { Login } from '../models/login.model';
 
 export class LoginComponent implements OnInit {
 
-  model = new Login('');
+  user: Login;
   error: string;
   constructor(
     private chat: ChatService,
     private router: Router,
   ) {
+    this.user = new Login();
   }
 
   ngOnInit() {
@@ -24,14 +25,23 @@ export class LoginComponent implements OnInit {
   }
   //send user name to backend with chat service, success routing to root else show error message
   loginuser() {
-    this.chat.loginuser(this.model).subscribe(
-      (res) => { 
+    this.chat.loginuser(this.user).subscribe(
+      (res) => {
         //join to broadcast room
         this.chat.joinroom(res['chatid']);
         this.router.navigate(['/']);
         console.log(res);
-       },
-      () => { this.error = 'user not existed, please sign up' });
+      },
+      () => { 
+        alert('user not existed');
+        this.user = new Login();
+       });
   }
 
+  signuser() {
+    this.chat.signuser(this.user)
+      .subscribe(() => {
+        this.router.navigate(['/login']);
+      });
+  }
 }

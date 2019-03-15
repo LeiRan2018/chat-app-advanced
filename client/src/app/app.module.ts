@@ -8,8 +8,6 @@ import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
-import { SignComponent } from './sign/sign.component';
-
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './home/home.component';
@@ -21,7 +19,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppComponent,
     LoginComponent,
     HeaderComponent,
-    SignComponent,
     HomeComponent,
   ],
   imports: [
