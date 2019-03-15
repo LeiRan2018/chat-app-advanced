@@ -11,8 +11,8 @@ exports.postsign = async function (data) {
         //create a new user in user table using data from client
         return user.create({
             userID: shortid.generate(),
-            userName: data.username,
-            email: data.address,
+            email: data.email,
+            password: data.password
         })
 
     } catch (e) {

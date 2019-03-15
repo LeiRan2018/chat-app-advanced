@@ -41,6 +41,7 @@ export class LoginComponent implements OnInit {
   signuser() {
     this.chat.signuser(this.user)
       .subscribe(() => {
+        alert('user registerd');
         this.router.navigate(['/login']);
       });
   }
