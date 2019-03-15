@@ -2,13 +2,18 @@ const chatRoom = require('../models/chatroom');
 
 const user_chatRoom = require('../models/user-chat');
 
-const user = require('../models/user');
+const User = require('../models/user');
 
 const message = require('../models/message');
 
+var jwt = require('jsonwebtoken');
+
+
 exports.getuser = async function (data) {
     try {
-        return user.findOne({ where: { userName: data.username } })
+        let user = await User.findOne({ where: { email: data.email, password: data.password } })
+        var token = jwt.sign({ email: user.email }, 'secret')
+        return {email: user.email, token: token}
     }
     catch (e) {
         throw Error('error occured while getting user info');

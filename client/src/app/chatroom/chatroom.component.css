@@ -1,0 +1,109 @@
+
+
+/*messages section*/
+.message {
+    padding: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: 0;
+    overflow-y: auto;
+    border: 1px solid #f7f7f7;
+    height: calc(100% - 120px);
+    background-color: #eeeeeeaf;
+}
+
+.reply-main {
+    padding: 1px 5px;
+}
+
+.reply-main textarea {
+    width: 100%;
+    resize: none;
+    overflow: hidden;
+    padding: 5px;
+    outline: none;
+    border: none;
+    text-indent: 5px;
+    box-shadow: none;
+    height: 100%;
+    font-size: 16px;
+}
+
+.reply-main textarea:focus {
+    outline: none;
+    border: none;
+    text-indent: 5px;
+    box-shadow: none;
+}
+
+.reply-send {
+    padding: 1px 10px;
+}
+
+.reply-send i {
+    text-align: center;
+    padding: 5px;
+    color: #93918f;
+    cursor: pointer;
+}
+
+.heading {
+    padding: 10px 16px 10px 15px;
+    margin: 0;
+    height: 60px;
+    width: 100%;
+    background-color: #eee;
+    z-index: 1000;
+}
+
+/*Header section*/
+.heading-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    text-align: end;
+}
+
+.heading-container div {
+    width: auto;
+    height: auto;
+}
+
+.heading-contact-container {
+    display: flex;
+    align-items: center;
+}
+
+.heading-avatar {
+    padding: 0;
+    cursor: pointer;
+}
+
+.heading-avatar-icon img {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.heading-name {
+    padding: 0;
+    cursor: pointer;
+}
+
+.heading-name-details {
+    margin-left: 10px;
+}
+
+/*settings icon */
+.heading-dot {
+    padding: 0;
+    margin-left: 10px;
+}
+
+.heading-dot i {
+    text-align: right;
+    padding: 5px;
+    color: #93918f;
+    cursor: pointer;
+}

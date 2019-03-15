@@ -1,0 +1,48 @@
+<!--header section-->
+<div class="row heading heading-container">
+  <div class="col-sm-10 col-md-10 col-xs-10">
+    <div class="heading-contact-container">
+      <div class="heading-avatar">
+        <div class="heading-avatar-icon">
+          <img src="https://bootdey.com/img/Content/avatar/avatar6.png">
+        </div>
+      </div>
+      <div class="heading-name">
+        <a class="heading-name-details">John Doe
+        </a>
+        <span class="heading-online">Online</span>
+      </div>
+    </div>
+  </div>
+
+  <!--Settings-->
+  <div class="col-sm-1 col-md-1 col-xs-1  heading-dot float-right">
+    <fa-icon [icon]="faSetting" class="faIcon"></fa-icon>
+  </div>
+</div>
+
+<!--messages section-->
+<div class="row message" id="conversation">
+  <div class="col-12 col-md-12">
+
+    <!--Messages-->
+
+    <!--received message component-->
+    
+
+
+  </div>
+</div>
+
+<!--reply section-->
+<div class="row reply">
+  <div class="col-1 col-sm-1 paperClip">
+    <fa-icon [icon]="faPaperClip" class="faIcon"></fa-icon>
+  </div>
+  <div class="col-9 col-sm-9 reply-main">
+    <textarea class="form-control" rows="1" id="comment" placeholder="write a message..."></textarea>
+  </div>
+  <div class="col-2 col-sm-2 reply-send">
+    <button type="button" class="btn btn-info btn-send">Send</button>
+  </div>
+</div>

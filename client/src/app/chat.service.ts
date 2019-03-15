@@ -32,8 +32,8 @@ export class ChatService {
   }
 
   //login use with user name and get user info and chat history from broadcast room by default
-  loginuser(username: any) {
-    return this.http.post(`${this.url}/api/login`, { 'data': username }).pipe(
+  loginuser(user: Login) {
+    return this.http.post(`${this.url}/api/login`, { 'data': user }).pipe(
       map(res => {
         //save logged in user in localstorage
         localStorage.setItem('currentUser', JSON.stringify(res['data']));

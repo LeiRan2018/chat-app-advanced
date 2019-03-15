@@ -28,9 +28,9 @@ export class LoginComponent implements OnInit {
     this.chat.loginuser(this.user).subscribe(
       (res) => {
         //join to broadcast room
-        this.chat.joinroom(res['chatid']);
-        this.router.navigate(['/']);
-        console.log(res);
+        // this.chat.joinroom(res['chatid']);
+        this.router.navigate(['/chat']);
+        // console.log(res);
       },
       () => { 
         alert('user not existed');

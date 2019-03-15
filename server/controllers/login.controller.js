@@ -6,26 +6,27 @@ exports.postlogin = async function (req, res) {
         //get user information from user table
         var user = await loginService.getuser(data);
         //get broadroom ID from user-chat table
-        var chatroom = await loginService.getchatroom();
+        // var chatroom = await loginService.getchatroom();
         //get the broadroom chat history from message table
-        var message = await loginService.gethistory(chatroom.chatRoomID);
+        // var message = await loginService.gethistory(chatroom.chatRoomID);
         //get contacts from user table
-        var contact = await loginService.getcontact();
+        // var contact = await loginService.getcontact();
         //filter message that only shown after user signing up
-        var sortedmes = message.filter(element => {
-            if (+user.createdAt <= +element.createdAt) {
-                return element;
-            }
-        });
+        // var sortedmes = message.filter(element => {
+        //     if (+user.createdAt <= +element.createdAt) {
+        //         return element;
+        //     }
+        // });
         return res
             .status(200)
             .json({
                 status: 200, data: {
-                    username: user.userName,
-                    userid: user.userID,
-                    chatid: chatroom.chatRoomID,
-                    message: sortedmes,
-                    contacts: contact
+                    // username: user.userName,
+                    // userid: user.userID,
+                    // chatid: chatroom.chatRoomID,
+                    // message: sortedmes,
+                    // contacts: contact
+                    user: user
                 }, message: "successfully"
             });
     } catch (e) {

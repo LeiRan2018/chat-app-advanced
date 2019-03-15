@@ -13,6 +13,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ChatComponent } from './chat/chat.component';
+import { ChatroomComponent } from './chatroom/chatroom.component';
+import { ContactComponent } from './contact/contact.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 @NgModule({
   declarations: [
@@ -20,6 +25,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     HeaderComponent,
     HomeComponent,
+    ChatComponent,
+    ChatroomComponent,
+    ContactComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,10 +35,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     FormsModule,
     NgbModule,
-    ReactiveFormsModule
-  ],
-  entryComponents: [
-    LoginComponent
+    ReactiveFormsModule,
+    FontAwesomeModule
   ],
   providers: [
     ChatService,
