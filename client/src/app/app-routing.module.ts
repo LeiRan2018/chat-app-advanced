@@ -9,11 +9,12 @@ import { ContactComponent } from './contact/contact.component';
 
 export const routes: Routes = [
   // { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: '', component: ChatComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   { path: 'chat', component: ChatComponent},
   { path: 'contact', component: ContactComponent},
-  // { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

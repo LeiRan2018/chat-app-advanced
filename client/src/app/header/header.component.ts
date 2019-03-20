@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChatService } from '../chat.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,6 +14,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private chat: ChatService,
+    private route: Router
   ) {
   }
 
@@ -20,10 +22,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    this.chat.logout().subscribe(() => {
-      localStorage.removeItem('currentUser');
-      location.reload();
-    });
-  }
+    this.chat.logout();
+  };
 
 }

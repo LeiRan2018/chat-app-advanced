@@ -20,8 +20,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    //remove localstorage once routing to login page
-    this.chat.logout();
+
   }
   //send user name to backend with chat service, success routing to root else show error message
   loginuser() {

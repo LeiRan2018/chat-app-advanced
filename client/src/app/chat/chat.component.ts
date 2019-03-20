@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faCog, faPaperclip, faCommentAlt, faUser, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { ChatService } from '../chat.service';
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
@@ -12,10 +13,28 @@ export class ChatComponent implements OnInit {
   faCommentDots = faCommentAlt;
   faUser = faUser;
   faSearch = faSearch;
+
+  currentUser: any;
+  messages: Array<any>;
   
-  constructor() { }
+  constructor(
+    private chat: ChatService,
+
+  ) {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.messages = new Array<any>();
+   }
 
   ngOnInit() {
+    this.receive();
+  }
+
+  receive() {
+    this.chat.getMessages().subscribe(msg => {
+      console.log(msg)
+      this.messages.push(msg);
+      console.log(this.messages);
+    })
   }
 
 }

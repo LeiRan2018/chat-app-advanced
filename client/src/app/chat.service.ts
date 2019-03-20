@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 import * as io from 'socket.io-client';
 import { Observable } from 'rxjs';
 import { Login } from './models/login.model';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class ChatService {
   // Our constructor calls our wsService connect method
   constructor(
     // private wsService: WebsocketService,
-    private http: HttpClient
+    private http: HttpClient,
+    private route: Router
   ) {
     //connecting to server with socket.io
     this.socket = io(this.url);
@@ -37,11 +39,13 @@ export class ChatService {
       map(res => {
         //save logged in user in localstorage
         localStorage.setItem('currentUser', JSON.stringify(res['data']));
+        console.log(res['data']['user']['userId']);
+        this.joinroom(res['data']['user']['userId']);
         return res['data']
       })
     );
   }
-  
+
   //switch to one-one chat mode with these two user name as parameter
   one(name: string) {
     return this.http.post(`${this.url}/api/one`, { data: name }).pipe(
@@ -54,12 +58,10 @@ export class ChatService {
   //logout user and clean localstorage 
   logout() {
     // console.log(JSON.parse(localStorage.getItem('currentUser')));
-    return this.http.post(`${this.url}/api/login/out`, { 'data': JSON.parse(localStorage.getItem('currentUser')) }).pipe(
-      map(res => {
-        console.log('success');
-        return res['data']
-      })
-    );
+    localStorage.removeItem('currentUser');
+    this.route.navigate(['/login']).then(() => {
+      location.reload();
+    })
   }
   //send real message to backend with socket.io
   sendMessage(message) {
@@ -73,7 +75,7 @@ export class ChatService {
   //receive real-time message with socket.io
   getMessages() {
     let observable = new Observable(observer => {
-      
+
       this.socket.on('message', (data) => {
         observer.next(data);
       });

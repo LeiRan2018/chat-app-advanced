@@ -13,7 +13,7 @@ exports.getuser = async function (data) {
     try {
         let user = await User.findOne({ where: { email: data.email, password: data.password } })
         var token = jwt.sign({ email: user.email }, 'secret')
-        return {email: user.email, token: token}
+        return {email: user.email, token: token, userId: user.userID}
     }
     catch (e) {
         throw Error('error occured while getting user info');
