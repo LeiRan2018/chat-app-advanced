@@ -1,6 +1,5 @@
 var chatService = require("../services/chat.service");
 
-
 exports.postchat = async function (req, res) {
   try {
     var data = req.body.data;

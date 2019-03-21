@@ -8,7 +8,7 @@
         </div>
       </div>
       <div class="heading-name">
-        <a class="heading-name-details">John Doe
+        <a class="heading-name-details">{{currentUser.email}}
         </a>
         <span class="heading-online">Online</span>
       </div>
@@ -28,7 +28,18 @@
     <!--Messages-->
 
     <!--received message component-->
-    
+    <div class="row message-body">
+      <div class="col-sm-12 message-main-receiver">
+        <div class="receiver">
+          <div class="message-text" *ngFor= "let message of messages">
+            {{message | json}}
+          </div>
+        </div>
+        <div class="receiver-time">
+          18:18 PM
+        </div>
+      </div>
+    </div>
 
 
   </div>
@@ -40,9 +51,9 @@
     <fa-icon [icon]="faPaperClip" class="faIcon"></fa-icon>
   </div>
   <div class="col-9 col-sm-9 reply-main">
-    <textarea class="form-control" rows="1" id="comment" placeholder="write a message..."></textarea>
+    <textarea class="form-control" rows="1" #comment placeholder="write a message..."></textarea>
   </div>
   <div class="col-2 col-sm-2 reply-send">
-    <button type="button" class="btn btn-info btn-send">Send</button>
+    <button type="button" class="btn btn-info btn-send" (click)="send(comment.value)">Send</button>
   </div>
 </div>

@@ -38,8 +38,8 @@ export class ChatService {
     return this.http.post(`${this.url}/api/login`, { 'data': user }).pipe(
       map(res => {
         //save logged in user in localstorage
-        localStorage.setItem('currentUser', JSON.stringify(res['data']));
-        console.log(res['data']['user']['userId']);
+        localStorage.setItem('currentUser', JSON.stringify(res['data']['user']));
+        localStorage.setItem('token', JSON.stringify(res['data']['user']['token']));
         this.joinroom(res['data']['user']['userId']);
         return res['data']
       })
@@ -56,10 +56,11 @@ export class ChatService {
     );
   }
   //logout user and clean localstorage 
-  logout() {
+  async logout() {
     // console.log(JSON.parse(localStorage.getItem('currentUser')));
     localStorage.removeItem('currentUser');
-    this.route.navigate(['/login']).then(() => {
+    localStorage.removeItem('token');
+    await this.route.navigate(['/login']).then(() => {
       location.reload();
     })
   }
