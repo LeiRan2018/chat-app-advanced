@@ -5,6 +5,7 @@ import * as io from 'socket.io-client';
 import { Observable } from 'rxjs';
 import { Login } from './models/login.model';
 import { Router } from '@angular/router';
+import { IContact } from './contact/contact';
 
 @Injectable({
   providedIn: 'root'

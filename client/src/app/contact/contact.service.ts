@@ -1,32 +1,21 @@
 import { Injectable } from '@angular/core';
 import { IContact } from './contact';
 import { HttpClient } from '@angular/common/http';
-
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
 export class ContactService {
+  private url = 'http://localhost:3000';
 
   constructor(private http: HttpClient) {
+  }
 
+  getContacts(): Observable<IContact[]> {
+    return this.http.get<IContact[]>(`${this.url}/api/contacts`).pipe(
+      map(res => { return res['data']['contacts'] })
+    );
   }
-  getContacts(): IContact[] {
-    return [
-      {
-        'name': 'John Doe',
-        'time': '10:20 PM',
-        'status': 'online'
-      },
-      {
-        'name': 'Mark Doe',
-        'time': '10:10 PM',
-        'status': 'offline'
-      },
-      {
-        'name': 'Jean Doe',
-        'time': '10:00 PM',
-        'status': 'online'
-      }
-    ];
-  }
+
 }

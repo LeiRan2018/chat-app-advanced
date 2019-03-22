@@ -25,8 +25,8 @@ export class ChatroomComponent implements OnInit {
 
   send(mess: string) {
     console.log(mess)
-    this.chat.sendMessage({ room: this.currentUser.userId, mess: mess, user: this.currentUser.username });
-    this.chat.postchat({ msg: mess, username: this.currentUser.username, chatid: this.currentUser.userId }).subscribe();
+    this.chat.sendMessage({ room: this.currentUser.userId, mess: mess, user: this.currentUser.email });
+    this.chat.postchat({ msg: mess, username: this.currentUser.email, chatid: this.currentUser.userId }).subscribe();
   }
 
   receive() {
