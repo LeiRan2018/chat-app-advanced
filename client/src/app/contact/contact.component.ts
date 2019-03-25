@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 export class ContactComponent implements OnInit {
 
     contacts: IContact[];
-
+    currentUser: any;
     // filteredContacts: IContact[];
 
     // _contactFilter: string;
@@ -25,6 +25,7 @@ export class ContactComponent implements OnInit {
     // }
 
     constructor(private _contactService: ContactService) {
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         // this.contactFilter = '';
     }
 
@@ -46,5 +47,13 @@ export class ContactComponent implements OnInit {
             this.contacts = data;
             console.log(data);
         })
+    }
+
+    selectUser(user: IContact) {
+        let users = [user.userId, this.currentUser.userId];
+        this._contactService.selectUser(users).subscribe(res => {
+            console.log(res);
+            this._contactService.subject.next(res['roomID']);
+        });
     }
 }

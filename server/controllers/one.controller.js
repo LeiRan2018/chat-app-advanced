@@ -5,8 +5,8 @@ exports.postone = async function (req, res) {
   try {
     var data = req.body.data;
     //split the usercombination and then assgining to user1 and user2
-    user1 = data.split(',')[0];
-    user2 = data.split(',')[1];
+    user1 = data[0];
+    user2 = data[1];
     //check if there is room exsited using these two users
     tempcomb1 = await oneService.exit(user1 + user2);
     tempcomb2 = await oneService.exit(user2 + user1);

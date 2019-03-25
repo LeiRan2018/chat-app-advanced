@@ -7,6 +7,7 @@ exports.getContacts = async function () {
         let sortContacts = contacts.map(el => {
             let obj = {};
             obj['email'] = el.email;
+            obj['userId'] = el.userID;
             return obj;
         });
         return sortContacts;
