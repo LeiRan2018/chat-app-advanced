@@ -2,6 +2,10 @@ const chatRoom = require('../models/chatroom');
 
 const message = require('../models/message');
 
+const friend = require('../models/friend');
+
+var shortid = require('shortid');
+
 exports.createroom = async function (data) {
     try {
         return chatRoom.create({
@@ -30,3 +34,19 @@ exports.exit = async function (chatRoomID) {
         throw Error('error occured while catching userchat table');
     }
 };
+
+exports.addUser = async function (data) {
+    try {
+        let user = await friend.findOne({ where: { friendEmail: data.friend }});
+        if (!user) {
+            friend.create({
+                email: data.host,
+                friendEmail: data.friend,
+                friendID: data.friendId
+            })
+        }
+    }
+    catch (e) {
+        throw Error('error occured while adding friend in table');
+    }
+}

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IContact } from './contact';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ChatService } from '../chat.service';
@@ -17,17 +17,25 @@ export class ContactService {
     this.subject = new BehaviorSubject("");
   }
 
-  getContacts(): Observable<IContact[]> {
-    return this.http.get<IContact[]>(`${this.url}/api/contacts`).pipe(
+  getContacts(email: string): Observable<IContact[]> {
+    return this.http.post<IContact[]>(`${this.url}/api/contacts`, { data: email }).pipe(
       map(res => { return res['data']['contacts'] })
     );
   }
 
-  selectUser(users: any): Observable<string> {
-    return this.http.post(`${this.url}/api/one`, { data: users }).pipe(
+  // selectUser(users: any): Observable<string> {
+  //   return this.http.post(`${this.url}/api/one`, { data: users }).pipe(
+  //     map(res => {
+  //       this.chat.joinroom(res['data']['roomID']);
+  //       return res['data'];
+  //     }));
+  // }
+
+  addUser(user: any): Observable<string> {
+    return this.http.post(`${this.url}/api/one/adduser`, { data: user }).pipe(
       map(res => {
-        this.chat.joinroom(res['data']['roomID']);
-        return res['data'];
+        // this.chat.joinroom(res['data']['roomID']);
+        return res['message'];
       }));
   }
 

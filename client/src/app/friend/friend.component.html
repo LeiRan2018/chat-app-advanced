@@ -1,11 +1,11 @@
-<div class="row sideBar-body" *ngFor="let contact of contacts"
-(click)= "addUser(contact)">
+<div class="row sideBar-body" *ngFor="let friend of friends"
+(click)= "selectUser(friend)">
   <div class="col-12 col-md-12">
     <div class="row">
       <div class="col-9 col-md-9 sideBar-main">
         <div class="row">
           <div class="col-sm-12 col-xs-12 sideBar-name">
-            {{contact.email}}
+            {{friend.friendEmail}}
           </div>
         </div>
       </div>

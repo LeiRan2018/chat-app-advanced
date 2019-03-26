@@ -12,48 +12,27 @@ export class ContactComponent implements OnInit {
 
     contacts: IContact[];
     currentUser: any;
-    // filteredContacts: IContact[];
-
-    // _contactFilter: string;
-    // get contactFilter() {
-    //     return this._contactFilter;
-    // }
-
-    // set contactFilter(newValue: string) {
-    //     this._contactFilter = newValue;
-    //     this.filteredContacts = this.contactFilter ? this.performFilter(this.contactFilter) : this.contacts;
-    // }
 
     constructor(private _contactService: ContactService) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        // this.contactFilter = '';
     }
 
-    // performFilter(filterBy: string): IContact[] {
-    //     filterBy = filterBy.toLocaleLowerCase();
-    //     return this.contacts.filter(
-    //         (contact: IContact) => contact.name.toLocaleLowerCase().indexOf(filterBy) > -1
-    //     );
-    // }
-
     ngOnInit(): void {
-        // this.contacts = this._contactService.getContacts().subscribe();
-        // this.filteredContacts = this.contacts;
         this.getContacts();
     }
 
     getContacts() {
-        this._contactService.getContacts().subscribe(data => {
+        console.log(this.currentUser);
+        this._contactService.getContacts(this.currentUser.email).subscribe(data => {
             this.contacts = data;
             console.log(data);
         })
     }
 
-    selectUser(user: IContact) {
-        let users = [user.userId, this.currentUser.userId];
-        this._contactService.selectUser(users).subscribe(res => {
+    addUser(user: IContact) {
+        let host = this.currentUser.email;
+        this._contactService.addUser({host: host, friend: user.email, friendId: user.userId}).subscribe(res => {
             console.log(res);
-            this._contactService.subject.next(res['roomID']);
         });
     }
 }

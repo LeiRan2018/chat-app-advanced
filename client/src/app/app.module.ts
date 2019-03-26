@@ -10,7 +10,6 @@ import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ChatComponent } from './chat/chat.component';
@@ -18,6 +17,7 @@ import { ChatroomComponent } from './chatroom/chatroom.component';
 import { ContactComponent } from './contact/contact.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AuthInterceptor } from './auth/auth-interceptor';
+import { FriendComponent } from './friend/friend.component';
 
 
 @NgModule({
@@ -25,10 +25,10 @@ import { AuthInterceptor } from './auth/auth-interceptor';
     AppComponent,
     LoginComponent,
     HeaderComponent,
-    HomeComponent,
     ChatComponent,
     ChatroomComponent,
     ContactComponent,
+    FriendComponent,
   ],
   imports: [
     BrowserModule,

@@ -23,9 +23,12 @@ const chatRoom = require('./models/chatroom');
 
 const message = require('./models/message');
 
+const friend = require('./models/friend');
+
 user.sync();
 user_chatRoom.sync();
 message.sync();
+friend.sync();
 
 //create a broadcast room if there is no room in chatRoom
 chatRoom.sync()
