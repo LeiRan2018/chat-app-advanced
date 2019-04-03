@@ -27,16 +27,17 @@
 
     <!--Messages-->
 
-    <!--received message component-->
+
+    <!--received message -->
     <div class="row message-body">
       <div class="col-sm-12 message-main-receiver">
         <div class="receiver">
-          <div class="message-text" *ngFor= "let message of messages">
+          <div class="message-text" *ngFor="let message of historyMessages">
             {{message | json}}
           </div>
-        </div>
-        <div class="receiver-time">
-          18:18 PM
+          <div class="message-text" *ngFor="let message of messages">
+            {{message | json}}
+          </div>
         </div>
       </div>
     </div>

@@ -5,4 +5,5 @@ var oneController = require('../../controllers/one.controller');
 
 router.post('/', oneController.postone);
 router.post('/adduser', oneController.addUser);
+router.post('/history', oneController.getHistory);
 module.exports = router;

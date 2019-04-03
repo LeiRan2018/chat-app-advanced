@@ -13,14 +13,15 @@ export class ChatroomComponent implements OnInit {
   currentUser: any;
   messages: Array<any>;
   roomId: string;
+  historyMessages: Array<any>;
 
   constructor(
     private chat: ChatService,
-    private contact: ContactService,
     private friendService: FriendService
   ) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.messages = new Array<any>();
+    this.historyMessages = new Array<any>();
   }
 
   ngOnInit() {
@@ -46,8 +47,16 @@ export class ChatroomComponent implements OnInit {
     console.log(this.messages);
     this.friendService.subject.subscribe(res => {
       this.roomId = res;
+      this.getHistory();
       this.messages = new Array<any>();
       console.log(res)
+    })
+  }
+
+  getHistory() {
+    this.friendService.getHistory(this.roomId).subscribe(res => {
+      this.historyMessages = res['history'];
+      console.log(res);
     })
   }
 

@@ -31,7 +31,6 @@ exports.postone = async function (req, res) {
 exports.addUser = async function (req, res) {
   try {
     let data = req.body.data;
-    console.log(data);
     await oneService.addUser(data);
     return res
       .status(200)
@@ -40,5 +39,22 @@ exports.addUser = async function (req, res) {
       });
   } catch (e) {
     return res.status(400).json({ status: 400, message: e.message });
+  }
+};
+
+exports.getHistory = async function (req, res) {
+  try {
+    let data = req.body.data;
+    console.log(data);
+    let history = await oneService.getHistory(data);
+    return res
+      .status(200)
+      .json({
+        status: 200, data: {
+          history: history
+        }, message: "successfully"
+      });
+  } catch (e) {
+
   }
 }

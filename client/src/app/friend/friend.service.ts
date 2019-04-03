@@ -31,5 +31,12 @@ export class FriendService {
         this.chat.joinroom(res['data']['roomID']);
         return res['data'];
       }));
+  };
+
+  getHistory(roomID: string) {
+    return this.http.post(`${this.url}/api/one/history`, { data: roomID }).pipe(
+      map(res => {
+        return res['data'];
+      }));
   }
 }

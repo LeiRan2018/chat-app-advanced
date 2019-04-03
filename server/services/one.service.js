@@ -37,7 +37,7 @@ exports.exit = async function (chatRoomID) {
 
 exports.addUser = async function (data) {
     try {
-        let user = await friend.findOne({ where: { email: data.host, friendEmail: data.friend}});
+        let user = await friend.findOne({ where: { email: data.host, friendEmail: data.friend } });
         if (!user) {
             friend.create({
                 email: data.host,
@@ -53,5 +53,15 @@ exports.addUser = async function (data) {
     }
     catch (e) {
         throw Error('error occured while adding friend in table');
+    }
+};
+
+exports.getHistory = async function (data) {
+    try {
+        let roomId = data;
+        let history = await message.findAll({ where: { chatRoomID: roomId } });
+        return history;
+    } catch (e) {
+        throw Error('error occured while fetching history in table');
     }
 }
