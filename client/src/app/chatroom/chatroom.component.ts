@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChatService } from '../chat.service';
 import { ContactService } from '../contact/contact.service';
+import { FriendService } from '../friend/friend.service';
 
 @Component({
   selector: 'app-chatroom',
@@ -15,7 +16,8 @@ export class ChatroomComponent implements OnInit {
 
   constructor(
     private chat: ChatService,
-    private contact: ContactService
+    private contact: ContactService,
+    private friendService: FriendService
   ) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.messages = new Array<any>();
@@ -29,7 +31,7 @@ export class ChatroomComponent implements OnInit {
   send(mess: string) {
     console.log(mess)
     this.chat.sendMessage({ room: this.roomId, mess: mess, user: this.currentUser.email });
-    this.chat.postchat({ msg: mess, username: this.currentUser.email, chatid: this.currentUser.userId }).subscribe();
+    this.chat.postchat({ msg: mess, username: this.currentUser.email, chatid: this.roomId }).subscribe();
   }
 
   receive() {
@@ -42,7 +44,7 @@ export class ChatroomComponent implements OnInit {
 
   getRoomId() {
     console.log(this.messages);
-    this.contact.subject.subscribe(res => {
+    this.friendService.subject.subscribe(res => {
       this.roomId = res;
       this.messages = new Array<any>();
       console.log(res)

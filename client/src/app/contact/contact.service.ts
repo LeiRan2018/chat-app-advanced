@@ -23,18 +23,10 @@ export class ContactService {
     );
   }
 
-  // selectUser(users: any): Observable<string> {
-  //   return this.http.post(`${this.url}/api/one`, { data: users }).pipe(
-  //     map(res => {
-  //       this.chat.joinroom(res['data']['roomID']);
-  //       return res['data'];
-  //     }));
-  // }
 
   addUser(user: any): Observable<string> {
     return this.http.post(`${this.url}/api/one/adduser`, { data: user }).pipe(
       map(res => {
-        // this.chat.joinroom(res['data']['roomID']);
         return res['message'];
       }));
   }

@@ -37,13 +37,18 @@ exports.exit = async function (chatRoomID) {
 
 exports.addUser = async function (data) {
     try {
-        let user = await friend.findOne({ where: { friendEmail: data.friend }});
+        let user = await friend.findOne({ where: { email: data.host, friendEmail: data.friend}});
         if (!user) {
             friend.create({
                 email: data.host,
                 friendEmail: data.friend,
                 friendID: data.friendId
-            })
+            });
+            friend.create({
+                email: data.friend,
+                friendEmail: data.host,
+                friendID: data.hostId
+            });
         }
     }
     catch (e) {

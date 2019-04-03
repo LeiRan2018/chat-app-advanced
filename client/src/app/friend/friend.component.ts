@@ -11,7 +11,9 @@ export class FriendComponent implements OnInit {
   friends: IContact[];
   currentUser: any;
 
-  constructor(private friendService: FriendService) {
+  constructor(
+    private friendService: FriendService
+    ) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
@@ -19,12 +21,12 @@ export class FriendComponent implements OnInit {
     this.getFriends();
   }
 
-  selectUser(user: IContact) {
-        // let users = [user.userId, this.currentUser.userId];
-        // this._contactService.selectUser(users).subscribe(res => {
-        //     console.log(res);
-        //     this._contactService.subject.next(res['roomID']);
-        // });
+  selectUser(user: any) {
+        let users = [user.friendID, this.currentUser.userId];
+        this.friendService.selectUser(users).subscribe(res => {
+            console.log(res);
+            this.friendService.subject.next(res['roomID']);
+        });
     }
 
   getFriends() {
