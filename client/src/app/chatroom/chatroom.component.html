@@ -29,30 +29,36 @@
 
     <!--history message -->
     <div *ngFor="let message of historyMessages">
-      <div *ngIf="message.username != currentUser.email" class="row message-main-receiver justify-content-end">
+      <div *ngIf="message.username != currentUser.email; else sending"
+        class="row message-main-receiver justify-content-end">
         <div class="receiver col-4 bg-info">
           {{message.message}} sent by {{message.username}}
         </div>
       </div>
-      <div *ngIf="message.username == currentUser.email" class="row message-main-receiver justify-content-start">
-        <div class="receiver col-4 bg-info">
-          {{message.message}} sent by {{message.username}}
+      <ng-template #sending>
+        <div class="row message-main-receiver justify-content-start">
+          <div class="receiver col-4 bg-info">
+            {{message.message}} sent by {{message.username}}
+          </div>
         </div>
-      </div>
+      </ng-template>
     </div>
 
     <!--real-time message -->
     <div *ngFor="let message of messages">
-      <div *ngIf="message.user != currentUser.email" class="row message-main-receiver justify-content-end">
+      <div *ngIf="message.user != currentUser.email; else sending"
+        class="row message-main-receiver justify-content-end">
         <div class="receiver col-4 bg-info">
           {{message.mess}} sent by {{message.user}}
         </div>
       </div>
-      <div *ngIf="message.user == currentUser.email" class="row message-main-receiver justify-content-start">
-        <div class="receiver col-4 bg-info">
-          {{message.mess}} sent by {{message.user}}
+      <ng-template #sending>
+        <div class="row message-main-receiver justify-content-start">
+          <div class="receiver col-4 bg-info">
+            {{message.mess}} sent by {{message.user}}
+          </div>
         </div>
-      </div>
+      </ng-template>
     </div>
   </div>
 </div>
