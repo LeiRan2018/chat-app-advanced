@@ -14,6 +14,7 @@ export class ChatroomComponent implements OnInit {
   messages: Array<any>;
   roomId: string;
   historyMessages: Array<any>;
+  roomTag: boolean = false;
 
   constructor(
     private chat: ChatService,
@@ -46,6 +47,9 @@ export class ChatroomComponent implements OnInit {
   getRoomId() {
     console.log(this.messages);
     this.friendService.subject.subscribe(res => {
+      if (res != "") {
+        this.roomTag = true;
+      }
       this.roomId = res;
       this.getHistory();
       this.messages = new Array<any>();
@@ -56,7 +60,7 @@ export class ChatroomComponent implements OnInit {
   getHistory() {
     this.friendService.getHistory(this.roomId).subscribe(res => {
       this.historyMessages = res['history'];
-      console.log(res);
+      console.log(res['history']);
     })
   }
 

@@ -10,10 +10,11 @@ import { FriendService } from './friend.service';
 export class FriendComponent implements OnInit {
   friends: IContact[];
   currentUser: any;
+  selectedFriend: any;
 
   constructor(
     private friendService: FriendService
-    ) {
+  ) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
@@ -22,12 +23,13 @@ export class FriendComponent implements OnInit {
   }
 
   selectUser(user: any) {
-        let users = [user.friendID, this.currentUser.userId];
-        this.friendService.selectUser(users).subscribe(res => {
-            console.log(res);
-            this.friendService.subject.next(res['roomID']);
-        });
-    }
+    this.selectedFriend = user;
+    let users = [user.friendID, this.currentUser.userId];
+    this.friendService.selectUser(users).subscribe(res => {
+      console.log(res);
+      this.friendService.subject.next(res['roomID']);
+    });
+  }
 
   getFriends() {
     this.friendService.getFriends(this.currentUser.email).subscribe(res => {

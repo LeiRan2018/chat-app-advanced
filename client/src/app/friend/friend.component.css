@@ -142,3 +142,8 @@ div {
 .last-message {
     opacity: 0.5;
 }
+
+.selected {
+    background-color: #CFD8DC !important;
+    color: white;
+  }

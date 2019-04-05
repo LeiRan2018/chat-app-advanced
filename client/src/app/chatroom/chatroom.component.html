@@ -20,7 +20,6 @@
     <fa-icon [icon]="faSetting" class="faIcon"></fa-icon>
   </div>
 </div>
-
 <!--messages section-->
 <div class="row message" id="conversation">
   <div class="col-12 col-md-12">
@@ -28,21 +27,33 @@
     <!--Messages-->
 
 
-    <!--received message -->
-    <div class="row message-body">
-      <div class="col-sm-12 message-main-receiver">
-        <div class="receiver">
-          <div class="message-text" *ngFor="let message of historyMessages">
-            {{message | json}}
-          </div>
-          <div class="message-text" *ngFor="let message of messages">
-            {{message | json}}
-          </div>
+    <!--history message -->
+    <div *ngFor="let message of historyMessages">
+      <div *ngIf="message.username != currentUser.email" class="row message-main-receiver justify-content-end">
+        <div class="receiver col-4 bg-info">
+          {{message.message}} sent by {{message.username}}
+        </div>
+      </div>
+      <div *ngIf="message.username == currentUser.email" class="row message-main-receiver justify-content-start">
+        <div class="receiver col-4 bg-info">
+          {{message.message}} sent by {{message.username}}
         </div>
       </div>
     </div>
 
-
+    <!--real-time message -->
+    <div *ngFor="let message of messages">
+      <div *ngIf="message.user != currentUser.email" class="row message-main-receiver justify-content-end">
+        <div class="receiver col-4 bg-info">
+          {{message.mess}} sent by {{message.user}}
+        </div>
+      </div>
+      <div *ngIf="message.user == currentUser.email" class="row message-main-receiver justify-content-start">
+        <div class="receiver col-4 bg-info">
+          {{message.mess}} sent by {{message.user}}
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 

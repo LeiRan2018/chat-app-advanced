@@ -32,9 +32,10 @@ export class ContactComponent implements OnInit {
     addUser(user: IContact) {
         let host = this.currentUser.email;
         let hostId = this.currentUser.userId;
-        console.log({host: host, hostId: hostId, friend: user.email, friendId: user.userId});
-        this._contactService.addUser({host: host, hostId: hostId, friend: user.email, friendId: user.userId}).subscribe(res => {
+        console.log({ host: host, hostId: hostId, friend: user.email, friendId: user.userId });
+        this._contactService.addUser({ host: host, hostId: hostId, friend: user.email, friendId: user.userId }).subscribe(res => {
             console.log(res);
+            alert("friend added!");
         });
     }
 }

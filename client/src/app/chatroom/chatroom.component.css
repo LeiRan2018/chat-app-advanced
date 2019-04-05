@@ -118,8 +118,8 @@
 .message-main-receiver {
     padding: 5px 9px;
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    /* justify-content: flex-start; */
+    /* align-items: center; */
 }
 
 .receiver {
