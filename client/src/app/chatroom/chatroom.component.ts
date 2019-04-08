@@ -46,7 +46,7 @@ export class ChatroomComponent implements OnInit {
 
   getRoomId() {
     console.log(this.messages);
-    this.friendService.subject.subscribe(res => {
+    this.friendService.friendSubject.subscribe(res => {
       if (res != "") {
         this.roomTag = true;
       }

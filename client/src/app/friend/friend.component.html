@@ -1,6 +1,5 @@
-<div class="row sideBar-body text-dark" *ngFor="let friend of friends"
-[class.selected]="friend === selectedFriend"
-(click)= "selectUser(friend)">
+<div class="row sideBar-body text-dark" *ngFor="let friend of friendList" [class.selected]="friend === selectedFriend"
+  (click)="selectUser(friend)">
   <div class="col-12 col-md-12">
     <div class="row">
       <div class="col-9 col-md-9 sideBar-main">

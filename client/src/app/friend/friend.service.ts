@@ -11,12 +11,14 @@ import { ChatService } from '../chat.service';
 export class FriendService {
 
   private url = 'http://localhost:3000';
-  subject: BehaviorSubject<string>;
+  friendSubject: BehaviorSubject<string>;
+  friendAddSubject: BehaviorSubject<any>;
   constructor(
     private http: HttpClient,
     private chat: ChatService,
   ) {
-    this.subject = new BehaviorSubject("");
+    this.friendSubject = new BehaviorSubject("");
+    this.friendAddSubject = new BehaviorSubject({friendID: "", friendEmail: ""});
   }
 
   getFriends(email: string): Observable<IContact[]> {

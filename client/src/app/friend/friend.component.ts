@@ -11,15 +11,20 @@ export class FriendComponent implements OnInit {
   friends: IContact[];
   currentUser: any;
   selectedFriend: any;
+  friendList: any[];
 
   constructor(
     private friendService: FriendService
   ) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.friendList = new Array<any>();
+    this.friendService.getFriends(this.currentUser.email).subscribe(res => {
+      this.friendList = res;
+    });
   }
 
   ngOnInit() {
-    this.getFriends();
+    this.getAddFriend();
   }
 
   selectUser(user: any) {
@@ -27,13 +32,14 @@ export class FriendComponent implements OnInit {
     let users = [user.friendID, this.currentUser.userId];
     this.friendService.selectUser(users).subscribe(res => {
       console.log(res);
-      this.friendService.subject.next(res['roomID']);
+      this.friendService.friendSubject.next(res['roomID']);
     });
   }
 
-  getFriends() {
-    this.friendService.getFriends(this.currentUser.email).subscribe(res => {
-      this.friends = res;
-    });
+  getAddFriend() {
+    this.friendService.friendAddSubject.subscribe(res => {
+      console.log(res)
+      this.friendList.push(res);
+    })
   }
 }
