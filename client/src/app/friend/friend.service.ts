@@ -40,5 +40,9 @@ export class FriendService {
       map(res => {
         return res['data'];
       }));
+  };
+
+  deleteFriend(owner:Object, friend: Object) {
+    return this.http.delete(`${this.url}/api/friend/${owner['email']}/${friend['friendEmail']}`);
   }
 }

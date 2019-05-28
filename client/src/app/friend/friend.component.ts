@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IContact } from '../contact/contact';
 import { FriendService } from './friend.service';
+import { element } from '@angular/core/src/render3/instructions';
 
 @Component({
   selector: 'app-friend',
@@ -41,5 +42,15 @@ export class FriendComponent implements OnInit {
       console.log(res)
       this.friendList.push(res);
     })
+  }
+
+  deleteFriend(friend) {
+    let index = this.friendList.findIndex((element) => {
+      return element == friend
+    })
+    if (index != -1) {
+      this.friendList.splice(index, 1);
+      this.friendService.deleteFriend(this.currentUser,friend).subscribe();
+    }
   }
 }
