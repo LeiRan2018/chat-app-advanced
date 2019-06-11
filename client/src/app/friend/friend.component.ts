@@ -45,12 +45,14 @@ export class FriendComponent implements OnInit {
   }
 
   deleteFriend(friend) {
-    let index = this.friendList.findIndex((element) => {
+    if (confirm("really delete this friend?")) {
+      let index = this.friendList.findIndex((element) => {
       return element == friend
     })
     if (index != -1) {
       this.friendList.splice(index, 1);
       this.friendService.deleteFriend(this.currentUser,friend).subscribe();
+    }
     }
   }
 }

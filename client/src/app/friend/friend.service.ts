@@ -43,6 +43,6 @@ export class FriendService {
   };
 
   deleteFriend(owner:Object, friend: Object) {
-    return this.http.delete(`${this.url}/api/friend/${owner['email']}/${friend['friendEmail']}`);
+    return this.http.delete(`${this.url}/api/friend/${owner['userId']}/${friend['friendID']}`);
   }
 }
