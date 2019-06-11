@@ -51,7 +51,9 @@ export class FriendComponent implements OnInit {
     })
     if (index != -1) {
       this.friendList.splice(index, 1);
-      this.friendService.deleteFriend(this.currentUser,friend).subscribe();
+      this.friendService.deleteFriend(this.currentUser,friend).subscribe(() =>{
+        this.friendService.friendSubject.next('');
+      });
     }
     }
   }

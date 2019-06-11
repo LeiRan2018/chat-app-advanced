@@ -72,6 +72,6 @@
     <textarea class="form-control" rows="1" #comment placeholder="write a message..."></textarea>
   </div>
   <div class="col-2 col-sm-2 reply-send">
-    <button type="button" class="btn btn-info btn-send" (click)="send(comment.value)">Send</button>
+    <button type="button" class="btn btn-info btn-send" (click)="send(comment.value); comment.value ='' ">Send</button>
   </div>
 </div>
